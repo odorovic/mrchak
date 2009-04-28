@@ -106,7 +106,7 @@ class Text(FloatCanvas.ScaledTextBox):
         '''
         attrs = repr['base_attrs']
         point = attrs['point']
-        size = int(attrs['size']) * 10
+        size = int(attrs['size']) * 20
         color = get_color(attrs['color'])
         text = attrs['text']
         FloatCanvas.ScaledTextBox.__init__(self,
@@ -114,5 +114,5 @@ class Text(FloatCanvas.ScaledTextBox):
                                            point,
                                            size,
                                            Color=color,
-                                           LineColor='CYAN',
+                                           LineColor=None,
                                            Position = 'bl')
