@@ -6,10 +6,9 @@
 import os
 import sys
 
-sys.path.append("/home/odor/workspace/python/aor2/src")
-
 import json
 import schematic
+import configuration
 
 usage = \
 '''
@@ -58,6 +57,7 @@ class Args(object):
         
 
 def __main__():
+    configuration.SYMBOL_PATHS.append(os.path.join(os.getcwd(),'symbols'))
     args = Args()
     schemlist = schematic.parse(args.input)
     obj = schematic.clasify(schemlist)
