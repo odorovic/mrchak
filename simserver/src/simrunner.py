@@ -21,7 +21,33 @@ from builtins.components import EdgeDetector
 
 CLK_DURATION = 100
 
+class SchChangeEvt(object):
+    pass
 
+class LocalSimProxy(object):
+    '''Proksi ka simulaciji.'''
+    
+    def __init__(self):
+        self.callbacks = {}
+    
+    def bind(self, evt, callback):
+        '''Vezuje dogadjaj na simulatoru za callback'''
+        try:
+            self.callbacks[evt.__name__].append(callback)
+        except KeyError, err:
+            self.callbacks[evt.__name__] = [callback]
+            
+    def set_selected_sch(self, schname):
+        '''Menja selektovanu shemu.
+    
+        Ovo, kao rezultat trigeruje sch_change event koji bi trebao da se propagira
+        do svih pretplatjenih na njega.
+        '''
+        evt = SchChangeEvt()
+        evt.newsch = schname
+        for callback in self.callbacks[evt.__class__.__name__]:
+            callback(evt)
+        
 
 class SimRunner(object):
     signals = {}    #svi signali, referencirani po url-u
