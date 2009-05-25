@@ -112,21 +112,15 @@ def main():
     try:
         in_filename = sys.argv[1]
         out_filename = sys.argv[2]
-        input = open(in_filename).read()
-        schin, schout = os.popen2('schdump')
-        schin.write(input)
-        schin.close()
-        schjson = schout.read()
-        f = open("/tmp/proba.json", 'w')
-        f.write(schjson)
-        f.close()
-        symboldict = simplejson.loads(schjson)
+        input = open(in_filename)
+        symboldict = simplejson.load(input)
         output = symbol_dumps(symboldict)
         tmpfilename = "/tmp/symgen.ini"
         tmpfile = open(tmpfilename, "w")
         tmpfile.write(output)
         tmpfile.close()
         os.system("tragesym %s %s" % (tmpfilename, out_filename))
+        print output
     except IOError, e:
         print usage
     
