@@ -5,10 +5,14 @@ Created on May 2, 2009
 '''
 
 import os
+import sys
 import simplejson
 import adapters
+from basichdl import hdl
+from basichdl import simrunner
 
-class DataSource(object):        
+class DataSource(object):  
+    '''Interfejs klasa'''      
     def items(self):
         return self._items
 
@@ -52,13 +56,25 @@ class TrivialJsonDs(DataSource):
         return simplejson.load(f)
     
     def _items(self, sch):
-        for submodule in sch['submodules']:
+        self.signals = []
+        for submodule in sch['submodules'] + sch['graphics']:
             for entity in submodule['symboldata']:
-                yield adapters.adapter(entity)
+                for adp in adapters.adapter(entity):
+                    yield adp
+            for attribute in submodule['attributes'].values():
+                for adp in adapters.adapter(attribute):
+                    yield adp
+        for signal in sch['signals']:
+            signalobj = adapters.Signal(signal)
+            self.signals.append(signalobj)
+            yield signalobj
 
     def items(self):
         '''Iterator kroz sve elemente za crtanje'''
         return self._items(self.sch)
+    
+    def onStateChange(self, evt):
+        print "Datasource.onStateChange, boli me kita, btw."
         
                 
 class ProjectDs(TrivialJsonDs):
@@ -68,23 +84,56 @@ class ProjectDs(TrivialJsonDs):
         self.manifest = self.read_manifest(prj_path)
         self.schs = {}
         for schem in self.manifest['schnames']:
-            sch = self.read_data(os.path.join(prj_path, 'out', schem + '.json'))
+            sch = self.read_data(os.path.join(prj_path, 'out', schem.lower() + '.json'))
             self.schs[schem] = sch
-        self.current_sch = self.manifest['entry-point'] 
+        self.init_sim()
+        self.current_sch = self.manifest['entry-point']
+    
+    def init_sim(self):
+        '''Inicijalizuje instancu simulatora nad hardverom'''
+        self.init_mems()
+        sys.path.append(os.path.join(self.manifest['path'],'out'))
+        pymodulename = self.manifest['hardware']
+        pymodule = __import__(pymodulename)
+        hwname = self.manifest['entry-point']
+        hw = getattr(pymodule, hwname)()
+        self.simulator = simrunner.SimRunner(self, hw)
+        
+    def init_mems(self):
+        '''Inicijalizuje memorije.'''
+        mem_path = os.path.join(self.manifest['path'], 'out', 'mem')
+        mems = self.manifest['mems']
+        for mem in mems:
+            memf = open(os.path.join(mem_path, mem+'.mem'))
+            mem_desc = simplejson.load(memf)
+            hdl.register_memory(mem_desc)
     
     def read_manifest(self, path, manifest_fname='manifest.json'):
-        def inorder(dct):
+        def inorder(lst):
             keys = []
-            for key, val in dct.items():
-                keys.append(key)
-                if val != None:
-                    keys.append(inorder(val))
+            for item in lst:
+                if isinstance(item, basestring):
+                    keys.append(item)
+                else:
+                    keys = keys + inorder(item)
             return keys 
         f = open(os.path.join(path, manifest_fname), 'r')
         manifest =  simplejson.load(f)
         manifest['schnames'] = inorder(manifest['tree'])
+        manifest['path'] = path
         return manifest
     
     def items(self):
         sch = self.schs[self.current_sch]
-        return self._items(sch)
+        itemgen = self._items(sch)
+        return itemgen
+    
+    def onStateChange(self, evt):
+        print "Datasource.onStateChange"
+        for signal in self.signals:
+            sigstate = self.simulator.get_sig_state(signal.name, self.current_sch)
+            signal.set_state(sigstate)
+    
+    def getsignal(self, name):
+        '''Vraca signal po imenu, lokalno pa globalono trazenje'''
+        return self.simulator.getsignal(name, self.current_sch)

@@ -10,98 +10,16 @@ import simplejson
 from wx.lib.floatcanvas import NavCanvas
 from wx.lib.floatcanvas import FloatCanvas
 import os
+import sys
 
+import events
 import adapters
+import datasource
+import kontrolers
+import glade
 
-class Signal(object):
-    '''Reprezentacija signal objekta.
-    
-    Signali se sastoje iz liste netova i tekstualnih labela. Signal je vezan za
-    SimProxy instancu, od koje preuzima trenutnu vrednost, a takodje se i prijavljuje 
-    na stateUpdate dogadjaje koje SimProksi generishe.
-    '''
-    class Wire(object):
-        '''Prikaz zice'''
-        pass
-    class Label(object):
-        '''Prikaz labele sa statusom'''
-        pass
+properties = {}
 
-    def __init__(self):
-        self.name = None
-        self.value = None
-        
-class Symbol(object):
-    '''Reprezentacija simbola na shemi.
-    
-    Simboli su prikazi na shemi koji imaju jedno jedino pridruzeno stanje.
-    Poseduju geometrijski kontekst koji treba iscrtati, i to je to.
-    '''
-    def __init__(self):
-        pass
-    
-    def loaddict(self, symboldict):
-        '''ucitava dict sa serijalizovanim opisom simbola u instancu.'''
-        
-class DataSource(object):        
-    def items(self):
-        return self._items
-            
-class TrivialJsonDs(DataSource):
-    '''Izvor podataka za iscrtavanje.
-    
-    Vrsi konverziju spoljnjeg opisa sheme u listu objekata koji se mogu iscrtati na 
-    FloatCanvas instanci.
-    
-    Za sada je spoljin tip podataka hard-wired na Json objekat proizvedem schdump alatom.
-    
-    '''
-
-    def __init__(self, schjson):
-        '''Konstruktor DataSorsa.
-        
-        Izvor konteksta za crtanje. Spaja izvor topologije za crtanje i simulatora 
-        koji odredjuje stanje elemenata za crtanje.
-        
-        Argumenti:
-            schjson - filename ili file object : ulazna shema.
-            simserver - SimServer instanca : Interfejs ka simulatoru.
-        '''
-        self.sch = self.read_data(schjson)
-
-    def read_data(self, schjson):
-        schdict = None
-        if type(schjson) == str:
-            try:
-                f = open(schjson, 'r')
-                schdict = self._read_json(f)
-            except IOError, e:
-                raise e  
-        elif hasattr(schjson, 'read'):
-            schdict = self._read_json(schjson)
-        #odavde se propagira IOError sa nepronadjenim fajlom, kao i bilo sta
-        #sto baca simplejson, uglavnom loshe formiran json
-        return schdict
-    
-    def _read_json(self, f):
-        return simplejson.load(f)
-    
-    def items(self):
-        '''Iterator kroz sve elemente za crtanje'''
-        for submodule in self.sch['submodules']:
-            for entity in submodule['symboldata']:
-                yield adapters.adapter(entity)
-        
-class TrivialDs(DataSource):
-    def __init__(self):
-        self._items = [adapters.Line({'base_attrs' : {'line':[[10,10],[10,20]],
-                                                    'color': 4}}),
-                        adapters.Box({'base_attrs' : {'point': [11,11],
-                                                      'width': 20,
-                                                      'height' : 5,
-                                                      'color': 5}})]
-
-    
 class Viewer(wx.Frame):
     '''Viewer klasa.
     
@@ -110,34 +28,102 @@ class Viewer(wx.Frame):
     def __init__(self, datasource, *args, **kwargs):
         '''Konstruktor Viewera.'''
         wx.Frame.__init__(self, *args, **kwargs)
-        self.Canvas = NavCanvas.NavCanvas(self,
-                                          Debug = 0,
-                                          BackgroundColor = adapters.pallete['BACKGROUND_COLOR']).Canvas
+        NC = NavCanvas.NavCanvas(self,
+                                 Debug = 0,
+                                 BackgroundColor = adapters.pallete['BACKGROUND_COLOR'])
+        self.Canvas = NC.Canvas
         self.datasource = datasource
         self.populate()
+        
+        S = wx.BoxSizer(wx.VERTICAL)
+        S.Add(NC, 1, wx.EXPAND)
+        self.SetSizer(S)
+        wx.CallAfter(self.Canvas.ZoomToBB)
         self.Show()
-        self.Canvas.ZoomToBB()
-
     
     def populate(self):
         '''Iscrtava ekran na osnovu data-sorsa.'''
         assert self.datasource != None
+        self.Canvas.ClearAll()
         for element in self.datasource.items():
             self.Canvas.AddObject(element)
-            
-    def onStateChange(self):
-        '''Hendler za promenu stanja sheme koju Viever prikazuje'''
-        pass
+            try:
+                element.onAfterAdd()
+            except:
+                pass
+        self.datasource.onStateChange(None)
     
-    def onSchematicChange(self, schemevent):
+    def onStateChange(self, state):
+        '''Hendler za promenu stanja sheme koju Viewver prikazuje'''
+        
+        wx.CallAfter(self.Canvas.Draw, **{'Force':True})
+        state.Skip()
+    
+    def onSchematicChange(self, schevent):
         '''Hendler koji se poziva u slucaju promene topologije sheme'''
-        pass
+        print 'onschchange'
+        newname = schevent.newname
+        self.datasource.current_sch = newname
+        self.populate()
+        wx.CallAfter(self.Canvas.ZoomToBB)
+    
+class AorApp(wx.App):
+    '''Centralna tacka celokupne aplikacije.
+    
+    Aor simulator se sastoji iz sledecih komponenata:
+    Viewer -- gui prikaz sheme koja se simulira
+    Selector -- gui pretrazivac sadrzaja procesora
+    Controller -- gui Applet za kontrolu toka ismulacije
+    Simulator -- Interfejs ka myhdl simulaciji
+    Datasource -- Pasivni izvor topologije hardvera.
+    '''
+    
+    @classmethod
+    def get_instance(cls):
+        return properties['instance']
+    
+    @classmethod
+    def set_instance(cls, instance):
+        properties['instance'] = instance
+    
+    def __init__(self, prj_path='/home/odor/workspace/gschem/procesor'):
+        wx.App.__init__(self)
+        AorApp.set_instance(self)
+        print AorApp.get_instance()
+        print properties
+        self.datasource = datasource.ProjectDs(prj_path)
+        self.navframe = glade.NavFrame(None, wx.ID_ANY, '', datasource = self.datasource)
+        self.sigviewframe = glade.SigViewFrame(None, wx.ID_ANY, '', datasource = self.datasource)
+        self.viewer = Viewer(self.datasource, 
+                             self.navframe,
+                             title='Schematic Viewer',
+                             size=(700,480))
+        
+        self.simulator = self.datasource.simulator
+        self.sigviewframe.init()
+        self.navframe.init()
+        
+        self.Bind(events.EVT_SCH_CHANGED, self.viewer.onSchematicChange)
+        self.Bind(events.EVT_SIM_CMD, self.onSimCommand, self.navframe)
+        #self.Bind(events.EVT_SIM_STATE, self.viewer.onStateChange)
+        #self.Bind(events.EVT_SIM_STATE, navframe.onStateChange)
+        self.Bind(events.EVT_SIG_VIEW, self.onSigView, self.viewer.Canvas)
+        
+        self.MainLoop()
+    
+    def onSigView(self, evt):
+        sig = self.datasource.getsignal(evt.signame)
+        self.sigviewframe.addSignal(sig)
+    
+    def onSimCommand(self, evt):
+        print "AorApp.onSimCommand"
+        self.simulator.onSimCommand(evt)
+        self.datasource.onStateChange(evt)
+        self.viewer.onStateChange(evt)
+        self.navframe.onStateChange(evt)
+        self.sigviewframe.onStateChange(evt)
         
 if __name__ == '__main__':
-    app = wx.App(False)
-    frame = Viewer(TrivialJsonDs('drawtest.json'), 
-                   None,
-                   title='Schematic Viewer',
-                   size=(640,480))
-    app.MainLoop()
+    #sys.stderr = open(os.devnull, "w")
+    AorApp()
         
