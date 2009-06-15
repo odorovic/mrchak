@@ -20,15 +20,18 @@ class TestNet(object):
     def __eq__(self, net):
         return self.line == ner.line
         
+        
 class TestComponent(object):
     '''Fixture za entites.Component'''
     def __init__(self):
         pass
     
+    
 class TestPin(object):
     def __init__(self, pnt):
         self.conn_pnt = pnt
         
+
 
 class TestPointToPointLineMerge(unittest.TestCase):
     def setUp(self):

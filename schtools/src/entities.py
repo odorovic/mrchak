@@ -240,7 +240,8 @@ class Arc(SchematicEntity):
                         ("capstyle", int),
                         ("dashstyle", int),
                         ("dashlength", int),
-                        ("dashspace", int))                
+                        ("dashspace", int))
+                  
 class Pin(SchematicEntity):
     '''pin'''
     type_id = 'P'
