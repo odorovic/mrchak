@@ -21,6 +21,10 @@ class CodeGeneratorBackend:
 
     def write(self, string):
         self.code.append(self.tab * self.level + string)
+        
+    def writeln(self, string):
+        self.write(string)
+        self.newline()
 
     def indent(self):
         self.level = self.level + 1
@@ -41,9 +45,11 @@ def generate_imports():
     c.newline()
     c.write('import myhdl')
     c.newline()
-    c.write('from basichdl.builtins.hdl import signal')
+    c.write('from basichdl.hdl import signal')
     c.newline()
-    c.write('from basichdl.builtins.components import *')
+    c.write('from basichdl.hdl import register_locals')
+    c.newline()
+    c.write('from basichdl.components import *')
     c.newline()
     c.newline()
     return c.end()
@@ -59,19 +65,34 @@ def generate_hdl(schematic):
     c.write(module_docstring)
     c.newline()
     c.newline()
-    modulename = schematic['attributes']['name']
+    modulename = schematic['attributes']['device']
     arglist = ', '.join([name for name in 
                          schematic['input_signals']+schematic['output_signals']])
-    c.write('def %s(%s):' % (modulename, arglist))
+    if arglist !='':
+        args = ', '.join([arglist, '**kwargs'])
+    else:
+        args = '**kwargs'
+    c.write('def %s(%s):' % (modulename, args))
     c.newline()
     c.indent()
+    
+    c.write('local_sigs = {}')
+    c.newline()
+    if arglist != '':
+        for argname in arglist.split(', '):
+            c.write('local_sigs["%s"] = %s' % (argname, argname))
+            c.newline()
+    c.write('register_locals("%s", local_sigs)' % modulename)
+    c.newline()
+    
     for signalname in schematic['internal_signals']:
         signalobj = [signal for signal in schematic['signals'] 
                      if signal['netname'] == signalname][0]
         value = signalobj.has_key('value') and signalobj['value'] or "0"
-        width = 1 #TODO citanje sirine iz jsona
+        width = signalobj.has_key('width') and signalobj['width'] or 1
+        sigtype = signalobj.has_key('nettype') and signalobj['nettype'] or 'sig'
         
-        opts = '"%s", intbv(%s)[%d:0]' % (signalname, value, width)
+        opts = '"%s", "%s", intbv(%s)[%d:0]' % (signalname, sigtype, value, width)
         c.write('%s = signal(%s)' % (signalname, opts))
         c.newline()
     c.newline()
@@ -79,14 +100,18 @@ def generate_hdl(schematic):
     modulenames = []
     for module in schematic['submodules']:
         name = module['attributes']['refdes']['base_attrs']['attr']
+        if name in modulenames:
+            print name, modulename
+            raise Exception('Duplicated arg.')
         modulenames.append(name)
         type = module['type']
-        arglist = ', '.join(module['inputs'] + module['outputs']) 
+        arglist = ', '.join(module['inputs'] + module['outputs'] + ['name="%s"' % name]) 
         c.write('%s = %s(%s)' % (name,type,arglist))
         c.newline()
     c.newline()
     c.write('return %s' % ', '.join(modulenames))
     c.dedent()
+    c.newline()
     return c.end()
 
 usage='''hdlgen [-m|-i|-a] file[s]'''
