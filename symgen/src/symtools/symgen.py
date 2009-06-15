@@ -10,7 +10,7 @@ import simplejson
 
 template_symbol = {'options' : {'wordswap': 'yes',
                        'rotate_labels' : 'no',
-                       'sort_labels' : 'yes',
+                       'sort_labels' : 'no',
                        'generate_pinseq' : 'no',
                        'sym_width' : 2600,
                        'pinwidthvertical' : 400,
@@ -33,22 +33,51 @@ template_symbol = {'options' : {'wordswap': 'yes',
 #pinnr    seq    type    style    posit.    net    label    
 #-----------------------------------------------------
 
+def update_attrs(pin, offset = 0):
+    try:
+        pinnum = int(pin['attributes']['pinnumber']['base_attrs']['attr']) + offset
+        pinseq = int(pin['attributes']['pinseq']['base_attrs']['attr']) + offset    
+    except:
+        print pin['attributes']['pinlabel']
+        for key in pin['attributes'].keys():
+            print key
+    pinnum = int(pin['attributes']['pinnumber']['base_attrs']['attr']) + offset
+    pinseq = int(pin['attributes']['pinseq']['base_attrs']['attr']) + offset
+    pin['pinnum'] = pinnum
+    pin['pinseq'] = pinseq
+    pin['style'] = 'line'
+
 def extract_pins(schematic):
+    def cmppin(pin1, pin2):
+        return cmp(int(pin1['pinnum']),int(pin2['pinnum']))
     '''Iz sheme vadi dve sortirane liste pinova. Ulazni i izlazni'''
     inpins = schematic['in_pins']
     outpins = schematic['out_pins']
+    reverse = False
+    if not reverse:
+        inpos = 'l'
+        intype = 'in'
+        inoffset = 0
+        outpos = 'r'
+        outtype = 'out'
+        outoffset = 0
+    else:
+        inpos = 'r'
+        intype = 'out'
+        inoffset = 10
+        outpos = 'l'
+        outtype = 'in'
+        outoffset = -31
     for pin in inpins:
-        pin['position'] = 'l'
-        pin['type'] = 'in'
+        pin['position'] = inpos
+        pin['type'] = intype
+        update_attrs(pin, inoffset)
     for pin in outpins:
-        pin['position'] = 'r'
-        pin['type'] = 'out'
-    pins = inpins + outpins
-    for pinnum, pin in enumerate(pins):
-        pin['style'] = 'line'
-        pin['pinnum'] = pinnum + 1
-        pin['pinseq'] = pin['pinnum']
-    return  inpins + outpins
+        pin['position'] = outpos
+        pin['type'] = outtype
+        update_attrs(pin, outoffset)
+    pins = sorted(inpins, cmppin) + sorted(outpins, cmppin)
+    return pins
 
 def make_pinfield(pindict):
     '''Iz recnika sa opisima pinova pravi listu atributa u tragesym formatu
@@ -120,7 +149,6 @@ def main():
         tmpfile.write(output)
         tmpfile.close()
         os.system("tragesym %s %s" % (tmpfilename, out_filename))
-        print output
     except IOError, e:
         print usage
     
