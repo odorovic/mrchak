@@ -17,96 +17,91 @@ Created on Apr 2, 2009
 
 import sys
 import myhdl
-from builtins.components import EdgeDetector
+from components import PROBE
+import hdl
+import events
+import wx
 
 CLK_DURATION = 100
-
-class SchChangeEvt(object):
-    pass
-
-class LocalSimProxy(object):
-    '''Proksi ka simulaciji.'''
-    
-    def __init__(self):
-        self.callbacks = {}
-    
-    def bind(self, evt, callback):
-        '''Vezuje dogadjaj na simulatoru za callback'''
-        try:
-            self.callbacks[evt.__name__].append(callback)
-        except KeyError, err:
-            self.callbacks[evt.__name__] = [callback]
-            
-    def set_selected_sch(self, schname):
-        '''Menja selektovanu shemu.
-    
-        Ovo, kao rezultat trigeruje sch_change event koji bi trebao da se propagira
-        do svih pretplatjenih na njega.
-        '''
-        evt = SchChangeEvt()
-        evt.newsch = schname
-        for callback in self.callbacks[evt.__class__.__name__]:
-            callback(evt)
-        
 
 class SimRunner(object):
     signals = {}    #svi signali, referencirani po url-u
     memories = {}   #svi memorijski elementi, referencirani po url-u i adresi.
-    def __init__(self, hwinstance):
+    def __init__(self, parent, hwinstance):
         '''Kreira instancu simulacije nad datim myhdl hardverskim modulom.
         
         Argumenti:
             hwmodule : function -- myhdl hardverski modul za simulaciju.
         '''
         self.hwinstance = hwinstance
-        self.clkposedge = 0
-        self.clk = 0
-        from myhdl import _simulator
-        SimRunner.signals = dict([(sig._name, sig) for sig in _simulator._signals])
-        print SimRunner.signals
+        self.flags = {'clk':False, 'instruction_begin': False, 'halt':False}
+        hdl.bind(hdl.PosEdgeEvt, self.onClk, signame='clk')
+        hdl.bind(hdl.PosEdgeEvt, self.onInst, signame='instruction_begin')
+        hdl.bind(hdl.PosEdgeEvt, self.onHalt, signame='halt')
         self.start()
-        
+        self.parent = parent
     
-    def clkevent(self):
-        self.clkposedge = 1
-        self.clk = self.clk+1
+    def onClk(self, evt):
+        self.flags['clk'] = True
+        hdl._clk = hdl._clk + 1
+        
+    def onInst(self, evt):
+        self.flags['instruction_begin'] = True
+        
+    def onHalt(self, evt):
+        self.flags['instruction_begin'] = True
+        raise Exception("Simulacija zavrshena")
+        print "HALT!"
         
     def start(self):
         '''Inicira simlaciju sa datim hardverskim modulom'''
-        self.sim = myhdl.Simulation((self.hwinstance, 
-                                     EdgeDetector(SimRunner.signals['clk'], 
-                                                  self.clkevent))) 
-        
-    def step(self):
+        self.sim = myhdl.Simulation(self.hwinstance) 
+    
+    
+    
+    def step(self, clkname=None):
         '''Pokrece simulaciju za jedan period takta unapred'''
+        assert not clkname or clkname in self.flags.keys()
+        watchdog = 0
         while True:
             self.sim.run(1)
-            if self.clkposedge:
-                self.clkposedge = 0
+            hdl.flush_evts()
+            #sporedni efekti svih dogadjaja su se se desili,
+            #sada proveravamo uslove ispadanja.
+            if clkname == None or self.flags[clkname] == True :
+                #self.sim.run(5)
+                for key in self.flags:
+                    self.flags[key] = False
                 return
+            watchdog = watchdog + 1
+            if watchdog == 10000:
+                raise Exception("Mrtva petlja.")
+    
+    def getsignal(self, name, namespace):
+        try:
+            global_sigs = hdl._signals
+            local_sigs = hdl._local_sig_bindings[namespace]
+            try:
+                return local_sigs[name]
+            except KeyError:
+                return global_sigs[name]
+        except KeyError, e:
+            not_found = e.args[0]
+            if not_found == namespace:
+                raise KeyError('Ne postoji dati namespace: %s' % namespace)
+            else:
+                raise KeyError('Ne postoji signal: %s.%s' % (namespace, name))   
+    
+    def get_sig_state(self,name, namespace):
+        '''Pokusava da vrati stanje signala po imenu u zadatom modulu'''
+        return self.getsignal(name, namespace).val
+            
+    def onSimCommand(self, evt):
+        print "SimRunner.onSimCommand"
+        try:
+            commandname, arg = evt.command.split()
+        except ValueError:
+            commandname = evt.command
+            arg = None
+        self.step(arg)
         
-    def goto(self, clknum):
-        '''Pomera simulaciju do prilozenog takta.'''
-        assert clknum >= self.clk
-        togo = self.clk - clknum
-        for i in range(togo):
-            self.step()
-    
-    def listsignalnames(self):
-        '''Vraca listu identifikatora svih signala u simulaciji'''
-        return [key for key in SimRunner.signals.keys()]
-    
-    def getsignalstate(self, name):
-        '''Vraca trenutno stanje signala datog imena.'''
-        return SimRunner.signals[name].val
-    
-    def getmemories(self):
-        '''Vraca listu svih memorijskih modula koje simulacija oglasava'''
-        pass
-    
-    def getmemory(self, name, address=0):
-        '''Vraca sadrzaj prilozene adrese prilozene memorije.'''
-        pass
-        
-    def setmemory(self, name, address, val):
-        pass
