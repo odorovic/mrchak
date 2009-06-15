@@ -36,3 +36,13 @@ class SimCommandEvent(wx.PyCommandEvent):
         wx.PyCommandEvent.__init__(self, SimCommandEvent.type, id)
 
 EVT_SIM_CMD = SimCommandEvent.binder
+
+class SignalViewEvent(wx.PyCommandEvent):
+    '''Dogadjaj koji floatcanvas generishe na doubleclick na neki od signala.'''
+    type = wx.NewEventType()
+    binder = wx.PyEventBinder(type, 1)
+    
+    def __init__(self, id):
+        wx.PyCommandEvent.__init__(self, SimCommandEvent.type, id)
+
+EVT_SIG_VIEW = SimCommandEvent.binder    
