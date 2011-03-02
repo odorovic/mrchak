@@ -1,8 +1,0 @@
-Import('env')
-
-OBJS = [env.SharedObject(cfile) for cfile in Glob('*.c') ]
-
-target = env.LoadableModule(target='cm', source=OBJS)
-
-Default(target)
-Return('target')
