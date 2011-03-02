@@ -1,7 +1,0 @@
-Import('env')
-
-sys = env.Verilog('testsys')
-env.Depends(sys, 'system.v')#Glob("*.v"))
-
-Default(sys)
-Return('sys')
