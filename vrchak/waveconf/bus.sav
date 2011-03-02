@@ -1,0 +1,35 @@
+[timestart] 9303
+[size] 1000 600
+[pos] -1 -1
+*-8.000000 1093 399705 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testsys.
+[treeopen] testsys.U1.
+[treeopen] testsys.U1.LCPU.
+@28
+testsys.U1.LCPU.clk
+@22
+testsys.U1.LCPU.a19to16[3:0]
+testsys.U1.LCPU.CPU.adbus[15:0]
+@820
+testsys.U1.LCPU.CPU.adbus[15:0]
+@28
+testsys.U1.LCPU.CPU.i_wrN
+@c00820
+testsys.U1.CP.data[7:0]
+@28
+(0)testsys.U1.CP.data[7:0]
+(1)testsys.U1.CP.data[7:0]
+(2)testsys.U1.CP.data[7:0]
+(3)testsys.U1.CP.data[7:0]
+(4)testsys.U1.CP.data[7:0]
+(5)testsys.U1.CP.data[7:0]
+(6)testsys.U1.CP.data[7:0]
+(7)testsys.U1.CP.data[7:0]
+@1401200
+-group_end
+@821
+testsys.U1.LCPU.d7to0[7:0]
+@28
+testsys.U1.LCPU.CPU.intaN
+testsys.U1.LCPU.CPU.denN
+testsys.U1.LCPU.CPU.dt_rN
