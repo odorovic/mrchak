@@ -1,0 +1,18 @@
+import os.path as path
+
+Import('env')
+
+sources = [f for f in Glob('*.asm')]
+bare_sources = [path.splitext(path.basename(str(f)))[0] for f in sources]
+
+bintargets = [[base+'.bin', base+'_symbols.map'] for base in bare_sources]
+
+OBJS = [env.Nasm(target=ts, source=asmfile) for ts, asmfile in zip(bintargets, sources)]
+
+imgtargets = [[base+'_romlo', base+'_romhi'] for base in bare_sources]
+
+ROMS = [env.Rom(target=imgs, source=objs) for imgs, objs in zip(imgtargets, OBJS)]
+
+Default(ROMS)
+Return(['OBJS', 'ROMS'])
+

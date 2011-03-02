@@ -1,0 +1,29 @@
+
+INT:
+//Preamble
+    LOAD0_FLAGS
+    PUSH
+    LOAD0_CS
+    PUSH
+    LOAD0_IP
+    PUSH
+    CLI
+    CLT
+//Input ops
+    ADDR_INT
+    #BROJ_PREKIDA
+    MEM_READ_WORD
+    LOAD1_MEM_WORD
+    ADDR_IB
+    #2
+    MEM_READ_WORD
+    LOAD0_MEM_WORD
+    JUMP_FAR_O16
+
+IRET
+    POP
+    STORE0_IP
+    POP
+    STORE0_CS
+    POP
+    STORE0_FLAGS
