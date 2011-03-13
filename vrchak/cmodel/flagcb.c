@@ -19,7 +19,6 @@ void flagcb_eval(flagcb_p fcb)
     assert(fcb);
     if(fcb->fcb_eval){
         *(fcb->fcb_flags) = fcb->fcb_eval(fcb);
-        printf("flags: %04x", *(fcb->fcb_flags));
     }
 }
 
@@ -70,7 +69,5 @@ uint16_t flags_add(flagcb_p fcb)
 
 uint16_t flags_log(flagcb_p fcb)
 {
-
+    return *(fcb->fcb_flags);
 }
-
-

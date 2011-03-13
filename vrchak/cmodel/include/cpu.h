@@ -62,6 +62,7 @@ typedef struct {
 #define INT_BIT_IDX    9
 #define DIR_BIT_IDX    10
 #define OFLOW_BIT_IDX  11
+#define DEBUG_BIT_IDX  15  //Special implementation debug reg.
 
 } cpu_context_s, *cpu_context_p;
 

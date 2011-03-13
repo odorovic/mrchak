@@ -28,6 +28,7 @@ static void decodeSegmentPrefix(op_p op, int prefices)
     }
 }
 
+/*
 static void decodeComplete(dec_p dec, op_p op, int position)
 {
     if (dec->dec_amode_decoded) {
@@ -36,6 +37,7 @@ static void decodeComplete(dec_p dec, op_p op, int position)
     }
     op_finish(op, position);
 }
+*/
 
 static void op_write_preamble(dec_p dec, op_p op, inst_p inst)
 {
@@ -44,7 +46,6 @@ static void op_write_preamble(dec_p dec, op_p op, inst_p inst)
     switch(opcode){
     case 0xcc: //INT 3
     case 0xcd: //INT imm8
-    case 0xce: //INTO (unimplemented)
         op_write_ucode(op, LOAD0_FLAGS);
         op_write_ucode(op, PUSH);
         op_write_ucode(op, LOAD0_CS);
@@ -53,6 +54,9 @@ static void op_write_preamble(dec_p dec, op_p op, inst_p inst)
         op_write_ucode(op, PUSH);
         op_write_ucode(op, CLI);
         op_write_ucode(op, CLT);
+        break;
+    case 0xce: //INTO (unimplemented)
+        op_write_ucode(op, BREAKPOINT);
         break;
     case 0x9a: //CALL FAR PTR 16:16
         op_write_ucode(op, LOAD0_CS);
@@ -568,12 +572,50 @@ static void op_write_input_args(dec_p dec, op_p op, inst_p inst)
         break;
 
     case 0xa4: //MOVS Yb, Xb
-    case 0xa5: //MOVS Yv, Xv
-    case 0xa6: //CMPS Yb, Xb
-    case 0xa7: //CMPS Xv, Yv
-    case 0xac: //LODS AL, Xb
-    case 0xad: //LODS eAX, Xv
         decodeSegmentPrefix(op, prefices);
+        op_write_ucode(op, ADDR_SI);
+        op_write_ucode(op, MEM_READ_BYTE);
+        op_write_ucode(op, LOAD0_MEM_BYTE);
+        break;
+    case 0xa5: //MOVS Yv, Xv
+        decodeSegmentPrefix(op, prefices);
+        op_write_ucode(op, ADDR_SI);
+        op_write_ucode(op, MEM_READ_WORD);
+        op_write_ucode(op, LOAD0_MEM_WORD);
+        break;
+    case 0xa6: //CMPS Yb, Xb
+        decodeSegmentPrefix(op, prefices);
+        op_write_ucode(op, ADDR_SI);
+        op_write_ucode(op, MEM_READ_WORD);
+        op_write_ucode(op, LOAD0_MEM_WORD);
+        //
+        op_write_ucode(op, LOAD_SEG_ES);
+        op_write_ucode(op, ADDR_SI);
+        op_write_ucode(op, MEM_READ_BYTE);
+        op_write_ucode(op, LOAD1_MEM_BYTE);
+        break;
+    case 0xa7: //CMPS Xv, Yv
+        decodeSegmentPrefix(op, prefices);
+        op_write_ucode(op, ADDR_SI);
+        op_write_ucode(op, MEM_READ_WORD);
+        op_write_ucode(op, LOAD0_MEM_WORD);
+        //
+        op_write_ucode(op, LOAD_SEG_ES);
+        op_write_ucode(op, ADDR_SI);
+        op_write_ucode(op, MEM_READ_WORD);
+        op_write_ucode(op, LOAD1_MEM_WORD);
+        break;
+    case 0xac: //LODS AL, Xb
+        decodeSegmentPrefix(op, prefices);
+        op_write_ucode(op, ADDR_SI);
+        op_write_ucode(op, MEM_READ_WORD);
+        op_write_ucode(op, LOAD0_MEM_WORD);
+        break;
+    case 0xad: //LODS AX, Xv
+        decodeSegmentPrefix(op, prefices);
+        op_write_ucode(op, ADDR_SI);
+        op_write_ucode(op, MEM_READ_WORD);
+        op_write_ucode(op, LOAD0_MEM_WORD);
         break;
 
     case 0xaa: //STOS Yb, AL (prefices do not override segment)
@@ -642,14 +684,14 @@ static void op_write_input_args(dec_p dec, op_p op, inst_p inst)
         break;
 
     case 0xce: // INTO (uniimplemented)
-        op_write_ucode(op, ADDR_INT);
-        op_write_arg(op, 4);
-        op_write_ucode(op, MEM_READ_WORD);
-        op_write_ucode(op, LOAD1_MEM_WORD);
-        op_write_ucode(op, ADDR_IW);
-        op_write_arg(op, 2);
-        op_write_ucode(op, MEM_READ_WORD);
-        op_write_ucode(op, LOAD0_MEM_WORD);
+//        op_write_ucode(op, ADDR_INT);
+//        op_write_arg(op, 4);
+//        op_write_ucode(op, MEM_READ_WORD);
+//        op_write_ucode(op, LOAD1_MEM_WORD);
+//        op_write_ucode(op, ADDR_IW);
+//        op_write_arg(op, 2);
+//        op_write_ucode(op, MEM_READ_WORD);
+//        op_write_ucode(op, LOAD0_MEM_WORD);
         break;
 
     case 0xcf: // IRET
@@ -813,11 +855,9 @@ static void op_write_operation(dec_p dec, op_p op, inst_p inst)
     case 0x5e: //POP SI
     case 0x5f: //POP DI
     case 0x8f: //POP  r/m16
-        op_write_ucode(op, POP);
-        break;
-
     case 0x9d: //POPF
-        op_write_ucode(op, POPF);
+        op_write_ucode(op, POP);
+        op_write_ucode(op, LOAD0_MEM_WORD);
         break;
 
     case 0x60: //PUSHA
@@ -836,18 +876,16 @@ static void op_write_operation(dec_p dec, op_p op, inst_p inst)
         break;
 
     case 0x6c: //INSB
+        op_write_ucode(op, INSB_A16);
         if ((prefices & PREFICES_REP) != 0) {
-            op_write_ucode(op, REP_INSB_A16);
-        } else {
-            op_write_ucode(op, INSB_A16);
+            op_write_ucode(op, REP);
         }
         break;
 
     case 0x6d: //INSW
+        op_write_ucode(op, INSW_A16);
         if ((prefices & PREFICES_REP) != 0) {
-            op_write_ucode(op, REP_INSW_A16);
-        } else {
-            op_write_ucode(op, INSW_A16);
+            op_write_ucode(op, REP);
         }
         break;
 
@@ -859,11 +897,9 @@ static void op_write_operation(dec_p dec, op_p op, inst_p inst)
         break;
 
     case 0x6f: //OUTS DX, Xv
-
+        op_write_ucode(op, OUTSW_A16);
         if ((prefices & PREFICES_REP) != 0) {
-            op_write_ucode(op, REP_OUTSW_A16);
-        } else {
-            op_write_ucode(op, OUTSW_A16);
+            op_write_ucode(op, REP);
         }
         break;
 
@@ -926,90 +962,80 @@ static void op_write_operation(dec_p dec, op_p op, inst_p inst)
     case 0x9f: op_write_ucode(op, LAHF); break;
 
     case 0xa4: //MOVSB
+        op_write_ucode(op, MOVSB_A16);
         if ((prefices & PREFICES_REP) != 0) {
-            op_write_ucode(op, REP_MOVSB_A16);
-        } else {
-            op_write_ucode(op, MOVSB_A16);
+            op_write_ucode(op, REP);
         }
         break;
 
-    case 0xa5: //MOVSW/D
+    case 0xa5: //MOVSW
+        op_write_ucode(op, MOVSW_A16);
         if ((prefices & PREFICES_REP) != 0) {
-            op_write_ucode(op, REP_MOVSW_A16);
-        } else {
-            op_write_ucode(op, MOVSW_A16);
+            op_write_ucode(op, REP);
         }
         break;
 
     case 0xa6: //CMPSB
+        op_write_ucode(op, CMPSB_A16);
         if ((prefices & PREFICES_REPE) != 0) {
-            op_write_ucode(op, REPE_CMPSB_A16);
+            op_write_ucode(op, REPE);
         } else if ((prefices & PREFICES_REPNE) != 0) {
-            op_write_ucode(op, REPNE_CMPSB_A16);
-        } else {
-            op_write_ucode(op, CMPSB_A16);
+            op_write_ucode(op, REPNE);
         }
         break;
 
     case 0xa7: //CMPSW
+        op_write_ucode(op, CMPSW_A16);
         if ((prefices & PREFICES_REPE) != 0) {
-            op_write_ucode(op, REPE_CMPSW_A16);
+            op_write_ucode(op, REPE);
         } else if ((prefices & PREFICES_REPNE) != 0) {
-            op_write_ucode(op, REPNE_CMPSW_A16);
-        } else {
-            op_write_ucode(op, CMPSW_A16);
+            op_write_ucode(op, REPNE);
         }
         break;
 
     case 0xaa: //STOSB
+        op_write_ucode(op, STOSB_A16);
         if ((prefices & PREFICES_REP) != 0) {
-            op_write_ucode(op, REP_STOSB_A16);
-        } else {
-            op_write_ucode(op, STOSB_A16);
+            op_write_ucode(op, REP);
         }
         break;
 
     case 0xab: //STOSW
+        op_write_ucode(op, STOSW_A16);
         if ((prefices & PREFICES_REP) != 0) {
-            op_write_ucode(op, REP_STOSW_A16);
-        } else {
-            op_write_ucode(op, STOSW_A16);
+            op_write_ucode(op, REP);
         }
         break;
 
     case 0xac: //LODSB
+        op_write_ucode(op, LODSB_A16);
         if ((prefices & PREFICES_REP) != 0) {
-            op_write_ucode(op, REP_LODSB_A16);
-        } else {
-            op_write_ucode(op, LODSB_A16);
+            op_write_ucode(op, REP);
         }
         break;
 
     case 0xad: //LODSW
+        op_write_ucode(op, LODSW_A16);
         if ((prefices & PREFICES_REP) != 0) {
-            op_write_ucode(op, REP_LODSW_A16);
-        } else {
-            op_write_ucode(op, LODSW_A16);
+            op_write_ucode(op, REP);
         }
         break;
 
     case 0xae: //SCASB
+        op_write_ucode(op, SCASB_A16);
         if ((prefices & PREFICES_REPE) != 0) {
-            op_write_ucode(op, REPE_SCASB_A16);
+            op_write_ucode(op, REPE);
         } else if ((prefices & PREFICES_REPNE) != 0) {
-            op_write_ucode(op, REPNE_SCASB_A16);
-        } else {
-            op_write_ucode(op, SCASB_A16);
+            op_write_ucode(op, REPNE);
         }
         break;
 
     case 0xaf: //SCASW
+        op_write_ucode(op, SCASW_A16);
         if ((prefices & PREFICES_REPE) != 0) {
-            op_write_ucode(op, REPE_SCASW_A16);
+            op_write_ucode(op, REPE);
         } else if ((prefices & PREFICES_REPNE) != 0) {
-            op_write_ucode(op, REPNE_SCASW_A16);
-        } else {
-            op_write_ucode(op, SCASW_A16);
+            op_write_ucode(op, REPNE);
         }
         break;
 
@@ -1085,7 +1111,7 @@ static void op_write_operation(dec_p dec, op_p op, inst_p inst)
         break;
 
     case 0xce:
-        op_write_ucode(op, INTO_O16_A16);
+        //op_write_ucode(op, INTO_O16_A16);
         break;
 
     case 0xcf:

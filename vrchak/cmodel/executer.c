@@ -1,4 +1,5 @@
 
+#include <vpi_user.h>
 #include <stdio.h>
 #include <assert.h>
 
@@ -110,6 +111,8 @@ static bool execute_ucode(op_p op,
             carry = (res32 >> 16) & 0x01;
             flagcb_set_cb(fcb, &flags_add, res32, carry);
             break;
+        case ADD_TO_SP:
+            break;
         case ADDR_BP:
             exe->exe_addr += cpu->bp;
             break;
@@ -138,6 +141,9 @@ static bool execute_ucode(op_p op,
             res16 = exe->exe_op0 & exe->exe_op1;
             flagcb_set_cb(fcb, &flags_log, res16, 0);
             exe->exe_op0 = res16;
+            break;
+        case BREAKPOINT:
+            vpi_control(vpiStop, vpiNotice);
             break;
         case CLC:
             clear_flag(&cpu->psw, CARRY_BIT_IDX);
@@ -219,7 +225,9 @@ static bool execute_ucode(op_p op,
             assert(false);
             break;
         case INC:
+            printf("%04x\n", cpu->si);
             exe->exe_op0 = exe->exe_op0 + 1;
+            printf("%04x\n", exe->exe_op0);
             flagcb_set_cb(fcb, &flags_add, exe->exe_op0, -1);
             break;
         case IN_O16:
@@ -464,6 +472,7 @@ static bool execute_ucode(op_p op,
             //Init a bus transaction.
         case LOAD0_SI:
             exe->exe_op0 = cpu->si;
+            break;
         case LOAD0_SP:
             exe->exe_op0 = cpu->sp;
             break;
@@ -546,13 +555,65 @@ static bool execute_ucode(op_p op,
             exe->exe_seg = cpu->ss;
             break;
         case LODSB_A16:
+            assert(NOOP == bop->bop_state);
+            printf("addr: %x\n",cpu->si);
+            busop_init(bop,
+                       exe->exe_seg,
+                       cpu->si,
+                       0,
+                       BUSOP_BYTE,
+                       BUSOP_READ,
+                       ADDR_MEM);
+            if(0 == get_flag(cpu->psw, DIR_BIT_IDX)){
+                cpu->si++;
+                cpu->di++;
+            }else{
+                cpu->si--;
+                cpu->di--;
+            }
+            break;
         case LODSW_A16:
+            assert(NOOP == bop->bop_state);
+            printf("addr: %x\n",cpu->si);
+            busop_init(bop,
+                       exe->exe_seg,
+                       cpu->si,
+                       0,
+                       BUSOP_WORD,
+                       BUSOP_READ,
+                       ADDR_MEM);
+            if(0 == get_flag(cpu->psw, DIR_BIT_IDX)){
+                cpu->si+=2;
+                cpu->di+=2;
+            }else{
+                cpu->si-=2;
+                cpu->di-=2;
+            }
+            break;
         case LOOP_CX:
+            cpu->cx--;
+            if(0 != cpu->cx){
+                cpu->ip+=exe->exe_op0;
+            }
+            break;
         case LOOPNZ_CX:
+            cpu->cx--;
+            flagcb_eval(fcb);
+            zero  = get_flag(cpu->psw, ZERO_BIT_IDX);
+            if(0 != cpu->cx || 0 == zero){
+                cpu->ip+=exe->exe_op0;
+            }
+            break;
         case LOOPZ_CX:
-            assert(false);
+            cpu->cx--;
+            flagcb_eval(fcb);
+            zero  = get_flag(cpu->psw, ZERO_BIT_IDX);
+            if(0 != cpu->cx || 1 == zero){
+                cpu->ip+=exe->exe_op0;
+            }
             break;
         case MEM_READ_BYTE:
+            printf("reading from %04x:%04x\n", exe->exe_seg, exe->exe_addr);
             busop_init(bop,
                        exe->exe_seg,
                        exe->exe_addr,
@@ -575,14 +636,54 @@ static bool execute_ucode(op_p op,
         case MEM_RESET:
             break;
         case MOVSB_A16:
+            assert(NOOP == bop->bop_state);
+            printf("addr: %x, data: %x\n",cpu->di, exe->exe_op0);
+            busop_init(bop,
+                       cpu->es,
+                       cpu->di,
+                       exe->exe_op0,
+                       BUSOP_BYTE,
+                       BUSOP_WRITE,
+                       ADDR_MEM);
+            if(0 == get_flag(cpu->psw, DIR_BIT_IDX)){
+                cpu->si++;
+                cpu->di++;
+            }else{
+                cpu->si--;
+                cpu->di--;
+            }
+            break;
         case MOVSW_A16:
+            assert(NOOP == bop->bop_state);
+            printf("addr: %x, data: %x\n",cpu->di, exe->exe_op0);
+            busop_init(bop,
+                       cpu->es,
+                       cpu->di,
+                       exe->exe_op0,
+                       BUSOP_WORD,
+                       BUSOP_WRITE,
+                       ADDR_MEM);
+            if(0 == get_flag(cpu->psw, DIR_BIT_IDX)){
+                cpu->si+=2;
+                cpu->di+=2;
+            }else{
+                cpu->si-=2;
+                cpu->di-=2;
+            }
+            break;
         case MUL_O16:
         case MUL_O8:
             assert(false);
             break;
         case NEG:
+            exe->exe_op0 = -((int16_t)exe->exe_op0);
+            break;
         case NOT:
+            exe->exe_op0 = ~(exe->exe_op0);
+            break;
         case OR:
+            exe->exe_op0 = exe->exe_op0 | exe->exe_op1;
+            break;
         case OUT_O16:
             assert(NOOP == bop->bop_state);
             busop_init(bop,
@@ -683,30 +784,14 @@ static bool execute_ucode(op_p op,
         case RCR_O8:
             assert(false);
             break;
-        case REPE_CMPSB_A16:
         case REP:
             cpu->cx--;
             if(0 != cpu->cx){
                 cpu->ip -= 2;
             }
             break;
-        case REPE_CMPSW_A16:
-        case REPE_SCASB_A16:
-        case REPE_SCASW_A16:
-        case REP_INSB_A16:
-        case REP_INSW_A16:
-        case REP_LODSB_A16:
-        case REP_LODSW_A16:
-        case REP_MOVSB_A16:
-        case REP_MOVSW_A16:
-        case REPNE_CMPSB_A16:
-        case REPNE_CMPSW_A16:
-        case REPNE_SCASB_A16:
-        case REPNE_SCASW_A16:
-        case REP_OUTSB_A16:
-        case REP_OUTSW_A16:
-        case REP_STOSB_A16:
-        case REP_STOSW_A16:
+        case REPE:
+        case REPNE:
         case RET_FAR_IW_O16_A16:
         case RET_FAR_O16_A16:
         case RET_IW_O16_A16:
@@ -774,6 +859,7 @@ static bool execute_ucode(op_p op,
             cpu->cx = exe->exe_op0;
             break;
         case STORE0_DH:
+            printf("%04x\n",exe->exe_op0 );
             set_high_byte(&cpu->dx, exe->exe_op0);
             break;
         case STORE0_DI:
@@ -826,7 +912,9 @@ static bool execute_ucode(op_p op,
             go_on = false;
             break;
         case STORE0_SI:
+            printf("%04x\n", cpu->si);
             cpu->si = exe->exe_op0;
+            printf("%04x\n", cpu->si);
             break;
         case STORE0_SP:
             cpu->sp = exe->exe_op0;
@@ -921,6 +1009,7 @@ static bool execute_ucode(op_p op,
             break;
         case SUB:
             res32 = exe->exe_op0 - exe->exe_op1;
+           printf("%04x, %04x\n", cpu->si, res32);
             exe->exe_op0 = (uint16_t)res32;
             carry = (res32 >> 16) & 0x01;
             flagcb_set_cb(fcb, &flags_add, res32, carry);

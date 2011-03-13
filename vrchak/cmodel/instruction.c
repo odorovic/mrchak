@@ -349,12 +349,16 @@ static OPCODE inst_get_opcode_idx(inst_p inst)
     case 0x2b: //SUB  reg16,  r/m16
     case 0x2c: //SUB AL,  imm8
     case 0x2d: //SUB eAX,  imm16
+        opcode_idx = SUB;
+        break; //CMP eAX,  imm16
     case 0x38: //CMP  r/m8,  reg8
     case 0x39: //CMP  r/m16,  reg16
     case 0x3a: //CMP  reg8,  r/m8
     case 0x3b: //CMP  reg16,  r/m16
     case 0x3c: //CMP AL,  imm8
-    case 0x3d: opcode_idx = SUB; break; //CMP eAX,  imm16
+    case 0x3d:
+        opcode_idx = CMP;
+        break; //CMP eAX,  imm16
 
     case 0x2f: opcode_idx = DAS; break; //DAS
 

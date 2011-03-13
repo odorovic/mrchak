@@ -1,6 +1,8 @@
 #include  <vpi_user.h>
+#include  <stdint.h>
 #include  <stdlib.h>
 #include  <assert.h>
+#include  <string.h>
 
 #include "cpu.h"
 #include "busiface.h"
@@ -34,6 +36,8 @@ typedef struct cpu_t {
     flagcb_s      cpu_flagcb;
     CPU_STATE     cpu_state;
 } cpu_s, *cpu_p;
+
+static cpu_p g_system_cpu = 0;
 
 typedef struct vpihandles_t {
     cpu_p       cpu;
@@ -128,7 +132,6 @@ static void cpu_reset_regs(cpu_p cpu)
     cc.ip  = CPU_START_IP;
     cc.psw = 0;
     cpu->cpu_regs = cc;
-    vpi_printf("%x", cpu->cpu_regs.ip);
 }
 
 
@@ -143,6 +146,10 @@ static bool intr_enabled(uint16_t flags)
     return flags & (1 << INT_BIT_IDX);
 }
 
+static bool dbg_break(uint16_t flags)
+{
+    return flags & (1 << DEBUG_BIT_IDX);
+}
 static void cpu_dump_context(cpu_p cpu)
 {
     cpu_context_p cc = &cpu->cpu_regs;
@@ -190,10 +197,10 @@ static void cpu_init_inst_read(cpu_p cpu)
     cpu->cpu_regs.ip++;
 }
 
+
 void cpu8086_model(cpu_p cpu, pins_p  pins)
 {
     if(0 == pins->pin_reset){
-//        vpi_printf("reset!\n");
         if(CPU_RESET != cpu->cpu_state){
             cpu_reset(cpu);
             cpu_clear_outputs(pins);
@@ -201,7 +208,6 @@ void cpu8086_model(cpu_p cpu, pins_p  pins)
     }else if(1 == pins->pin_clk){
         switch(cpu->cpu_state){
             case CPU_FETCH:
-//                vpi_printf("Fetch.\n");
                 if(FC == busiface_next(&cpu->cpu_busop, pins)){
                     if(false == fetcher_next(&cpu->cpu_fetcher,
                                 busop_get_byte(&cpu->cpu_busop),
@@ -215,7 +221,6 @@ void cpu8086_model(cpu_p cpu, pins_p  pins)
                 }
                 break;
             case CPU_EXECUTE:
-//                vpi_printf("Execute.\n");
                 if(NOOP==cpu->cpu_busop.bop_state ||
                    FC==busiface_next(&cpu->cpu_busop, pins)){
                     cpu->cpu_busop.bop_state = NOOP;
@@ -235,6 +240,9 @@ void cpu8086_model(cpu_p cpu, pins_p  pins)
                             cpu_init_inst_read(cpu);
                             cpu->cpu_state = CPU_FETCH;
                             fetcher_init(&cpu->cpu_fetcher);
+                        }
+                        if(1 == dbg_break(cpu->cpu_regs.psw)){
+                            vpi_control(vpiStop, vpiNotice);
                         }
                     }
                 }
@@ -260,7 +268,6 @@ void cpu8086_model(cpu_p cpu, pins_p  pins)
                 break;
             case CPU_INITIAL:
             case CPU_RESET:
-//                vpi_printf("Reset.\n");
                 cpu_init_inst_read(cpu);
                 cpu->cpu_state = CPU_FETCH;
                 break;
@@ -416,6 +423,7 @@ PLI_INT32 cpu8086_calltf(PLI_BYTE8* arg)
     cpu_data->time_stub = time_p;
     cpu_data->value_stub = value_p;
 
+    g_system_cpu = cpu_data->cpu;
     return(0);
 }
 
@@ -445,9 +453,126 @@ void charprinter_register()
       vpi_register_systf(&tf_data);
 }
 
+#define DEFINE_GETTER(reg)        \
+uint16_t GET_##reg(cpu_p cpu)     \
+{                                 \
+    return cpu->cpu_regs.reg;     \
+}                                 \
+
+DEFINE_GETTER(ax)
+DEFINE_GETTER(bx)
+DEFINE_GETTER(cx)
+DEFINE_GETTER(dx)
+
+DEFINE_GETTER(di)
+DEFINE_GETTER(si)
+
+DEFINE_GETTER(bp)
+DEFINE_GETTER(sp)
+
+DEFINE_GETTER(cs)
+DEFINE_GETTER(ds)
+DEFINE_GETTER(es)
+DEFINE_GETTER(ss)
+
+DEFINE_GETTER(ip)
+DEFINE_GETTER(psw)
+
+uint16_t GET_AX(cpu_p cpu)
+{
+    return cpu->cpu_regs.ax;
+}
+
+typedef struct reg_acc_t {
+    char*    name;
+    uint16_t (*getter)(cpu_p);
+} reg_acc_s, *reg_acc_p;
+
+static reg_acc_s cpu_fields[] = {
+    {"ax", &GET_ax},
+    {"bx", &GET_bx},
+    {"cx", &GET_cx},
+    {"dx", &GET_dx},
+
+    {"si", &GET_si},
+    {"di", &GET_di},
+
+    {"bp", &GET_bp},
+    {"sp", &GET_sp},
+
+    {"cs", &GET_cs},
+    {"ds", &GET_ds},
+    {"es", &GET_es},
+    {"ss", &GET_ss},
+
+    {"ip", &GET_ip},
+    {"psw", &GET_psw},
+
+    {0, 0}
+
+};
+
+PLI_INT32 debug_print_calltf(PLI_BYTE8* arg)
+{
+    int i, found=0;
+    uint16_t regval;
+    char* str;
+    s_vpi_value val;
+    vpiHandle instance_h, arg_h, arg_itr;
+    val.format = vpiStringVal;
+    instance_h = vpi_handle(vpiSysTfCall, NULL);
+    arg_itr = vpi_iterate(vpiArgument, instance_h);
+    arg_h = vpi_scan(arg_itr);
+    vpi_get_value(arg_h, &val);
+    str = val.value.str;
+    for(i=0; cpu_fields[i].name != 0; i++){
+        if(0 == strcmp(cpu_fields[i].name, str)){
+            found = 1;
+            regval = cpu_fields[i].getter(g_system_cpu);
+            vpi_printf("%04x\n", regval);
+            break;
+        }
+    }
+    if(0 == found){
+        vpi_printf("Invalid argument: %s\n", str);
+    }
+    return 0;
+}
+
+PLI_INT32 debug_continue_calltf(PLI_BYTE8* arg)
+{
+    g_system_cpu->cpu_regs.psw &= 0x7fff;
+    return 0;
+}
+
+void debug_continue_register()
+{
+      s_vpi_systf_data tf_data;
+      tf_data.type      = vpiSysTask;
+      tf_data.tfname    = "$continue";
+      tf_data.calltf    = debug_continue_calltf;
+      tf_data.compiletf = 0;
+      tf_data.sizetf    = 0;
+      tf_data.user_data = g_system_cpu;
+      vpi_register_systf(&tf_data);
+}
+void debug_print_register()
+{
+      s_vpi_systf_data tf_data;
+      tf_data.type      = vpiSysTask;
+      tf_data.tfname    = "$print";
+      tf_data.calltf    = debug_print_calltf;
+      tf_data.compiletf = 0;
+      tf_data.sizetf    = 0;
+      tf_data.user_data = g_system_cpu;
+      vpi_register_systf(&tf_data);
+}
+
 DLLEXPORT void (*vlog_startup_routines[])() = {
     cpu8086_register,
     charprinter_register,
+    debug_print_register,
+    debug_continue_register,
     0
 };
 
