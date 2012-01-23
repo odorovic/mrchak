@@ -19,8 +19,6 @@ import sys
 import myhdl
 from components import PROBE
 import hdl
-import events
-import wx
 
 CLK_DURATION = 100
 
