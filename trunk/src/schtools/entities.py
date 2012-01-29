@@ -4,7 +4,7 @@
 import inspect
 import entities as ents
 import geometry as g
-from json import _serialize, JsonSerializable
+import jsonWrapper
 class OpenBrace(Exception): pass
 class ClosedBrace(Exception): pass
 class SchSyntaxError(Exception): pass
@@ -64,7 +64,7 @@ def _parse_token(xsubtoken, grammar):
         val = cons(*args)
     return name, val
 
-class SchematicEntity(JsonSerializable):
+class SchematicEntity(jsonWrapper.JsonSerializable):
     def __new__(cls, token, generator = None):
         '''Kondiciono instancira klasu'''
         if token.split()[0] == cls.type_id:
@@ -99,7 +99,7 @@ class SchematicEntity(JsonSerializable):
         pass
     
     def __serialize__(self):
-        return _serialize(self.__dict__)
+        return jsonWrapper._serialize(self.__dict__)
         
 class Text(SchematicEntity):
     '''Tekstualni entitet. Sadrzi niz linija teksta'''

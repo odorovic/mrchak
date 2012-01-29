@@ -4,11 +4,11 @@ Created on Apr 1, 2009
 @author: odor
 '''
 
-import simplejson
+import json
 
 def serialize(obj, **kwargs):
     serialized = _serialize(obj)
-    return simplejson.dumps(serialized, **kwargs)
+    return json.dumps(serialized, **kwargs)
 
 def _serialize(obj):
     '''Serijalizuje objekat u recnik serijalizabilan u simplejson.

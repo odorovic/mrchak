@@ -7,6 +7,7 @@ import os
 import sys
 
 import json
+import jsonWrapper
 import schematic
 import configuration
 
@@ -55,13 +56,13 @@ class Args(object):
         else:
             return open(fname, mode)
         
-
 def __main__():
     configuration.SYMBOL_PATHS.append(os.path.join(os.getcwd(),'symbols'))
     args = Args()
     schemlist = schematic.parse(args.input)
     obj = schematic.clasify(schemlist)
-    jsonrepr = json.serialize(obj, indent=2)
+    jsonrepr = jsonWrapper.serialize(obj, indent=2)
+    #jsonrepr = json.dumps(obj, default=__serialize__, indent=2)
     args.output.write(jsonrepr)
 
      

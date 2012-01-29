@@ -8,8 +8,7 @@ import schparse
 import entities
 import schematic
 import sys
-from json import serialize
-from json import JsonSerializable
+import jsonWrapper
 import pprint
 
 class NotConnected(Exception):
@@ -138,7 +137,7 @@ def clasify(schemlist):
     schematic = Schematic(schemlist)
     return schematic
 
-class Schematic(JsonSerializable):
+class Schematic(jsonWrapper.JsonSerializable):
     '''Hijerarhijska reprezentacija elektricne sheme.'''
     def __init__(self, schemlist):
         '''Kreira Shemu iz liste sadrzanih podelementata.
@@ -282,7 +281,7 @@ class Schematic(JsonSerializable):
         else:
             raise NotConnected
         
-class Symbol(JsonSerializable):
+class Symbol(jsonWrapper.JsonSerializable):
     '''Simbol na shemi.
     
     Ova klasa poseduje topoloski kontekst, u upotrebi za generaciju simulatora i
@@ -353,7 +352,7 @@ class Symbol(JsonSerializable):
                 return True
         return False
 
-class Netlist(JsonSerializable):
+class Netlist(jsonWrapper.JsonSerializable):
     '''Skup logicki povezanih netova.'''
     def __init__(self):
         self.nets = set()
