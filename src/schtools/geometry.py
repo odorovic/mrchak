@@ -1,8 +1,9 @@
 '''Jedonstavan paket za 2D-integer-taxicab geometriju.'''
 
-from json import _serialize, JsonSerializable
 
-class Point(JsonSerializable):
+import jsonWrapper
+
+class Point(jsonWrapper.JsonSerializable):
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -58,9 +59,9 @@ class Point(JsonSerializable):
         return hash
     
     def __serialize__(self):
-        return [_serialize(self.x), _serialize(self.y)]
+        return [jsonWrapper._serialize(self.x), jsonWrapper._serialize(self.y)]
         
-class Line(JsonSerializable):
+class Line(jsonWrapper.JsonSerializable):
     def __init__(self, p1 , p2):
         '''p1,p2 --> Point instance'''
         self.points = (p1,p2)
@@ -117,7 +118,7 @@ class Line(JsonSerializable):
     
     def __serialize__(self):
         p1, p2 = self.points
-        return [_serialize(p1), _serialize(p2)]
+        return [jsonWrapper._serialize(p1), jsonWrapper._serialize(p2)]
         
     def touches(self, line):
         '''Proverava da li linija dodiruje liniju
