@@ -1,0 +1,3912 @@
+{
+  "output_signals": [], 
+  "submodules": [
+    {
+      "inputs": [], 
+      "point": [
+        43900, 
+        47200
+      ], 
+      "outputs": [
+        "clk"
+      ], 
+      "component": {
+        "base_attrs": {
+          "angle": 0, 
+          "point": [
+            43900, 
+            47200
+          ], 
+          "basename": "clock.sym", 
+          "mirror": 0, 
+          "selectable": 1, 
+          "type": "C"
+        }, 
+        "ext_attrs": {
+          "device": {
+            "base_attrs": {
+              "angle": 0, 
+              "num_lines": 1, 
+              "show_name_value": 0, 
+              "point": [
+                43895, 
+                47900
+              ], 
+              "color": 5, 
+              "text": "device=CLOCK", 
+              "visibility": 0, 
+              "key": "device", 
+              "size": 10, 
+              "type": "T", 
+              "alignment": 0, 
+              "attr": "CLOCK"
+            }, 
+            "ext_attrs": {}
+          }, 
+          "refdes": {
+            "base_attrs": {
+              "angle": 0, 
+              "num_lines": 1, 
+              "show_name_value": 1, 
+              "point": [
+                43895, 
+                47700
+              ], 
+              "color": 5, 
+              "text": "refdes=CLOCK1", 
+              "visibility": 1, 
+              "key": "refdes", 
+              "size": 10, 
+              "type": "T", 
+              "alignment": 0, 
+              "attr": "CLOCK1"
+            }, 
+            "ext_attrs": {}
+          }
+        }
+      }, 
+      "symboldata": [
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              45300, 
+              47400
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                45300, 
+                47400
+              ], 
+              [
+                44900, 
+                47400
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  45200, 
+                  47500
+                ], 
+                "color": 9, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  44995, 
+                  47445
+                ], 
+                "color": 5, 
+                "text": "pinnumber=1", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  45200, 
+                  47700
+                ], 
+                "color": 5, 
+                "text": "pinseq=1", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  44845, 
+                  47395
+                ], 
+                "color": 9, 
+                "text": "pinlabel=clk", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "clk"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 1, 
+            "point": [
+              43895, 
+              47700
+            ], 
+            "color": 8, 
+            "text": "refdes=CLOCK?", 
+            "visibility": 1, 
+            "key": "refdes", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "CLOCK?"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              43895, 
+              47900
+            ], 
+            "color": 8, 
+            "text": "device=CLOCK", 
+            "visibility": 0, 
+            "key": "device", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "CLOCK"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "fillwidth": -1, 
+            "pitch1": -1, 
+            "dashstyle": 0, 
+            "point": [
+              43900, 
+              47200
+            ], 
+            "color": 3, 
+            "capstyle": 0, 
+            "pitch2": -1, 
+            "wh": [
+              1000, 
+              400
+            ], 
+            "dashspace": -1, 
+            "width": 0, 
+            "angle1": -1, 
+            "angle2": -1, 
+            "dashlength": -1, 
+            "filltype": 0, 
+            "type": "B"
+          }, 
+          "ext_attrs": {}
+        }
+      ], 
+      "pins": [
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              45300, 
+              47400
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                45300, 
+                47400
+              ], 
+              [
+                44900, 
+                47400
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  45200, 
+                  47500
+                ], 
+                "color": 9, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  44995, 
+                  47445
+                ], 
+                "color": 5, 
+                "text": "pinnumber=1", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  45200, 
+                  47700
+                ], 
+                "color": 5, 
+                "text": "pinseq=1", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  44845, 
+                  47395
+                ], 
+                "color": 9, 
+                "text": "pinlabel=clk", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "clk"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }
+      ], 
+      "attributes": {
+        "device": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              43895, 
+              47900
+            ], 
+            "color": 5, 
+            "text": "device=CLOCK", 
+            "visibility": 0, 
+            "key": "device", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "CLOCK"
+          }, 
+          "ext_attrs": {}
+        }, 
+        "refdes": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 1, 
+            "point": [
+              43895, 
+              47700
+            ], 
+            "color": 5, 
+            "text": "refdes=CLOCK1", 
+            "visibility": 1, 
+            "key": "refdes", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "CLOCK1"
+          }, 
+          "ext_attrs": {}
+        }
+      }, 
+      "type": "CLOCK"
+    }, 
+    {
+      "inputs": [
+        "TOP_LEVEL_5", 
+        "clk"
+      ], 
+      "point": [
+        49000, 
+        45700
+      ], 
+      "outputs": [
+        "TOP_LEVEL_4", 
+        "TOP_LEVEL_3", 
+        "TOP_LEVEL_2", 
+        "TOP_LEVEL_1"
+      ], 
+      "component": {
+        "base_attrs": {
+          "angle": 0, 
+          "point": [
+            49000, 
+            45700
+          ], 
+          "basename": "reg_cascade.sym", 
+          "mirror": 0, 
+          "selectable": 1, 
+          "type": "C"
+        }, 
+        "ext_attrs": {
+          "device": {
+            "base_attrs": {
+              "angle": 0, 
+              "num_lines": 1, 
+              "show_name_value": 0, 
+              "point": [
+                49400, 
+                48100
+              ], 
+              "color": 5, 
+              "text": "device=REG_CASCADE", 
+              "visibility": 0, 
+              "key": "device", 
+              "size": 10, 
+              "type": "T", 
+              "alignment": 0, 
+              "attr": "REG_CASCADE"
+            }, 
+            "ext_attrs": {}
+          }, 
+          "footprint": {
+            "base_attrs": {
+              "angle": 0, 
+              "num_lines": 1, 
+              "show_name_value": 0, 
+              "point": [
+                49400, 
+                48300
+              ], 
+              "color": 5, 
+              "text": "footprint=DIP14", 
+              "visibility": 0, 
+              "key": "footprint", 
+              "size": 10, 
+              "type": "T", 
+              "alignment": 0, 
+              "attr": "DIP14"
+            }, 
+            "ext_attrs": {}
+          }, 
+          "refdes": {
+            "base_attrs": {
+              "angle": 0, 
+              "num_lines": 1, 
+              "show_name_value": 1, 
+              "point": [
+                52000, 
+                47900
+              ], 
+              "color": 5, 
+              "text": "refdes=U1", 
+              "visibility": 1, 
+              "key": "refdes", 
+              "size": 10, 
+              "type": "T", 
+              "alignment": 6, 
+              "attr": "U1"
+            }, 
+            "ext_attrs": {}
+          }
+        }
+      }, 
+      "symboldata": [
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              52300, 
+              47400
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                52300, 
+                47400
+              ], 
+              [
+                52000, 
+                47400
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  47400
+                ], 
+                "color": 5, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  47450
+                ], 
+                "color": 5, 
+                "text": "pinnumber=3", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "3"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  47350
+                ], 
+                "color": 5, 
+                "text": "pinseq=3", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "3"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  47400
+                ], 
+                "color": 9, 
+                "text": "pinlabel=out1", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "out1"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              52300, 
+              47000
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                52300, 
+                47000
+              ], 
+              [
+                52000, 
+                47000
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  47000
+                ], 
+                "color": 5, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  47050
+                ], 
+                "color": 5, 
+                "text": "pinnumber=4", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "4"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  46950
+                ], 
+                "color": 5, 
+                "text": "pinseq=4", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "4"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  47000
+                ], 
+                "color": 9, 
+                "text": "pinlabel=out2", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "out2"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              52300, 
+              46600
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                52300, 
+                46600
+              ], 
+              [
+                52000, 
+                46600
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  46600
+                ], 
+                "color": 5, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  46650
+                ], 
+                "color": 5, 
+                "text": "pinnumber=5", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "5"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  46550
+                ], 
+                "color": 5, 
+                "text": "pinseq=5", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "5"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  46600
+                ], 
+                "color": 9, 
+                "text": "pinlabel=out3", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "out3"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              52300, 
+              46200
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                52300, 
+                46200
+              ], 
+              [
+                52000, 
+                46200
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  46200
+                ], 
+                "color": 5, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  46250
+                ], 
+                "color": 5, 
+                "text": "pinnumber=6", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "6"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  46150
+                ], 
+                "color": 5, 
+                "text": "pinseq=6", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "6"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  46200
+                ], 
+                "color": 9, 
+                "text": "pinlabel=out4", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "out4"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              49100, 
+              47400
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                49100, 
+                47400
+              ], 
+              [
+                49400, 
+                47400
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49450, 
+                  47400
+                ], 
+                "color": 5, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49300, 
+                  47450
+                ], 
+                "color": 5, 
+                "text": "pinnumber=2", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "2"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49300, 
+                  47350
+                ], 
+                "color": 5, 
+                "text": "pinseq=2", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "2"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49450, 
+                  47400
+                ], 
+                "color": 9, 
+                "text": "pinlabel=clk", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "clk"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              49100, 
+              47000
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                49100, 
+                47000
+              ], 
+              [
+                49400, 
+                47000
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49450, 
+                  47000
+                ], 
+                "color": 5, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49300, 
+                  47050
+                ], 
+                "color": 5, 
+                "text": "pinnumber=1", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49300, 
+                  46950
+                ], 
+                "color": 5, 
+                "text": "pinseq=1", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49450, 
+                  47000
+                ], 
+                "color": 9, 
+                "text": "pinlabel=input", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "input"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "fillwidth": -1, 
+            "pitch1": -1, 
+            "dashstyle": 0, 
+            "point": [
+              49400, 
+              45800
+            ], 
+            "color": 3, 
+            "capstyle": 0, 
+            "pitch2": -1, 
+            "wh": [
+              2600, 
+              2000
+            ], 
+            "dashspace": -1, 
+            "width": 0, 
+            "angle1": -1, 
+            "angle2": -1, 
+            "dashlength": -1, 
+            "filltype": 0, 
+            "type": "B"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 1, 
+            "point": [
+              52000, 
+              47900
+            ], 
+            "color": 8, 
+            "text": "refdes=U?", 
+            "visibility": 1, 
+            "key": "refdes", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 6, 
+            "attr": "U?"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              47900
+            ], 
+            "color": 9, 
+            "text": "reg_cascade", 
+            "visibility": 1, 
+            "type": "T", 
+            "alignment": 0, 
+            "size": 10
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              48100
+            ], 
+            "color": 5, 
+            "text": "device=REG_CASCADE", 
+            "visibility": 0, 
+            "key": "device", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "REG_CASCADE"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              48300
+            ], 
+            "color": 5, 
+            "text": "footprint=DIP14", 
+            "visibility": 0, 
+            "key": "footprint", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "DIP14"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              48500
+            ], 
+            "color": 5, 
+            "text": "author=None", 
+            "visibility": 0, 
+            "key": "author", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "None"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              48700
+            ], 
+            "color": 5, 
+            "text": "documentation=None", 
+            "visibility": 0, 
+            "key": "documentation", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "None"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              48900
+            ], 
+            "color": 5, 
+            "text": "description=None", 
+            "visibility": 0, 
+            "key": "description", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "None"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              49100
+            ], 
+            "color": 5, 
+            "text": "numslots=0", 
+            "visibility": 0, 
+            "key": "numslots", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "0"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              49300
+            ], 
+            "color": 5, 
+            "text": "dist-license=DWTFYW", 
+            "visibility": 0, 
+            "key": "dist-license", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "DWTFYW"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              49500
+            ], 
+            "color": 5, 
+            "text": "use-license=DWTFYW", 
+            "visibility": 0, 
+            "key": "use-license", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "DWTFYW"
+          }, 
+          "ext_attrs": {}
+        }
+      ], 
+      "pins": [
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              49100, 
+              47000
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                49100, 
+                47000
+              ], 
+              [
+                49400, 
+                47000
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49450, 
+                  47000
+                ], 
+                "color": 5, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49300, 
+                  47050
+                ], 
+                "color": 5, 
+                "text": "pinnumber=1", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49300, 
+                  46950
+                ], 
+                "color": 5, 
+                "text": "pinseq=1", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49450, 
+                  47000
+                ], 
+                "color": 9, 
+                "text": "pinlabel=input", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "input"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              49100, 
+              47400
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                49100, 
+                47400
+              ], 
+              [
+                49400, 
+                47400
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49450, 
+                  47400
+                ], 
+                "color": 5, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49300, 
+                  47450
+                ], 
+                "color": 5, 
+                "text": "pinnumber=2", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "2"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49300, 
+                  47350
+                ], 
+                "color": 5, 
+                "text": "pinseq=2", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "2"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  49450, 
+                  47400
+                ], 
+                "color": 9, 
+                "text": "pinlabel=clk", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "clk"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              52300, 
+              47400
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                52300, 
+                47400
+              ], 
+              [
+                52000, 
+                47400
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  47400
+                ], 
+                "color": 5, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  47450
+                ], 
+                "color": 5, 
+                "text": "pinnumber=3", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "3"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  47350
+                ], 
+                "color": 5, 
+                "text": "pinseq=3", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "3"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  47400
+                ], 
+                "color": 9, 
+                "text": "pinlabel=out1", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "out1"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              52300, 
+              47000
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                52300, 
+                47000
+              ], 
+              [
+                52000, 
+                47000
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  47000
+                ], 
+                "color": 5, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  47050
+                ], 
+                "color": 5, 
+                "text": "pinnumber=4", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "4"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  46950
+                ], 
+                "color": 5, 
+                "text": "pinseq=4", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "4"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  47000
+                ], 
+                "color": 9, 
+                "text": "pinlabel=out2", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "out2"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              52300, 
+              46600
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                52300, 
+                46600
+              ], 
+              [
+                52000, 
+                46600
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  46600
+                ], 
+                "color": 5, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  46650
+                ], 
+                "color": 5, 
+                "text": "pinnumber=5", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "5"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  46550
+                ], 
+                "color": 5, 
+                "text": "pinseq=5", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "5"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  46600
+                ], 
+                "color": 9, 
+                "text": "pinlabel=out3", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "out3"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              52300, 
+              46200
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                52300, 
+                46200
+              ], 
+              [
+                52000, 
+                46200
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  46200
+                ], 
+                "color": 5, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 8, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  46250
+                ], 
+                "color": 5, 
+                "text": "pinnumber=6", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "6"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  52100, 
+                  46150
+                ], 
+                "color": 5, 
+                "text": "pinseq=6", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 2, 
+                "attr": "6"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  51950, 
+                  46200
+                ], 
+                "color": 9, 
+                "text": "pinlabel=out4", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 8, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "out4"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }
+      ], 
+      "attributes": {
+        "description": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              48900
+            ], 
+            "color": 5, 
+            "text": "description=None", 
+            "visibility": 0, 
+            "key": "description", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "None"
+          }, 
+          "ext_attrs": {}
+        }, 
+        "dist-license": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              49300
+            ], 
+            "color": 5, 
+            "text": "dist-license=DWTFYW", 
+            "visibility": 0, 
+            "key": "dist-license", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "DWTFYW"
+          }, 
+          "ext_attrs": {}
+        }, 
+        "numslots": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              49100
+            ], 
+            "color": 5, 
+            "text": "numslots=0", 
+            "visibility": 0, 
+            "key": "numslots", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "0"
+          }, 
+          "ext_attrs": {}
+        }, 
+        "documentation": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              48700
+            ], 
+            "color": 5, 
+            "text": "documentation=None", 
+            "visibility": 0, 
+            "key": "documentation", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "None"
+          }, 
+          "ext_attrs": {}
+        }, 
+        "use-license": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              49500
+            ], 
+            "color": 5, 
+            "text": "use-license=DWTFYW", 
+            "visibility": 0, 
+            "key": "use-license", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "DWTFYW"
+          }, 
+          "ext_attrs": {}
+        }, 
+        "device": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              48100
+            ], 
+            "color": 5, 
+            "text": "device=REG_CASCADE", 
+            "visibility": 0, 
+            "key": "device", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "REG_CASCADE"
+          }, 
+          "ext_attrs": {}
+        }, 
+        "author": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              48500
+            ], 
+            "color": 5, 
+            "text": "author=None", 
+            "visibility": 0, 
+            "key": "author", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "None"
+          }, 
+          "ext_attrs": {}
+        }, 
+        "footprint": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              49400, 
+              48300
+            ], 
+            "color": 5, 
+            "text": "footprint=DIP14", 
+            "visibility": 0, 
+            "key": "footprint", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "DIP14"
+          }, 
+          "ext_attrs": {}
+        }, 
+        "refdes": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 1, 
+            "point": [
+              52000, 
+              47900
+            ], 
+            "color": 5, 
+            "text": "refdes=U1", 
+            "visibility": 1, 
+            "key": "refdes", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 6, 
+            "attr": "U1"
+          }, 
+          "ext_attrs": {}
+        }
+      }, 
+      "type": "REG_CASCADE"
+    }, 
+    {
+      "inputs": [
+        "TOP_LEVEL_6", 
+        "TOP_LEVEL_6", 
+        "clk"
+      ], 
+      "point": [
+        46200, 
+        48700
+      ], 
+      "outputs": [
+        "TOP_LEVEL_5"
+      ], 
+      "component": {
+        "base_attrs": {
+          "angle": 0, 
+          "point": [
+            46200, 
+            48700
+          ], 
+          "basename": "reg.sym", 
+          "mirror": 0, 
+          "selectable": 1, 
+          "type": "C"
+        }, 
+        "ext_attrs": {
+          "device": {
+            "base_attrs": {
+              "angle": 0, 
+              "num_lines": 1, 
+              "show_name_value": 0, 
+              "point": [
+                46595, 
+                50200
+              ], 
+              "color": 5, 
+              "text": "device=REG", 
+              "visibility": 0, 
+              "key": "device", 
+              "size": 10, 
+              "type": "T", 
+              "alignment": 0, 
+              "attr": "REG"
+            }, 
+            "ext_attrs": {}
+          }, 
+          "refdes": {
+            "base_attrs": {
+              "angle": 0, 
+              "num_lines": 1, 
+              "show_name_value": 1, 
+              "point": [
+                46595, 
+                50000
+              ], 
+              "color": 5, 
+              "text": "refdes=REG1", 
+              "visibility": 1, 
+              "key": "refdes", 
+              "size": 10, 
+              "type": "T", 
+              "alignment": 0, 
+              "attr": "REG1"
+            }, 
+            "ext_attrs": {}
+          }
+        }
+      }, 
+      "symboldata": [
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              46200, 
+              49700
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                46200, 
+                49700
+              ], 
+              [
+                46600, 
+                49700
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  49700
+                ], 
+                "color": 9, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46505, 
+                  49745
+                ], 
+                "color": 5, 
+                "text": "pinnumber=1", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  49700
+                ], 
+                "color": 5, 
+                "text": "pinseq=1", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46655, 
+                  49695
+                ], 
+                "color": 9, 
+                "text": "pinlabel=ld", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "ld"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              46200, 
+              49300
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                46200, 
+                49300
+              ], 
+              [
+                46600, 
+                49300
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  49300
+                ], 
+                "color": 9, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46505, 
+                  49345
+                ], 
+                "color": 5, 
+                "text": "pinnumber=2", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "2"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  49300
+                ], 
+                "color": 5, 
+                "text": "pinseq=2", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "2"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46655, 
+                  49295
+                ], 
+                "color": 9, 
+                "text": "pinlabel=in", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              46200, 
+              48900
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                46200, 
+                48900
+              ], 
+              [
+                46600, 
+                48900
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  48900
+                ], 
+                "color": 9, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46505, 
+                  48945
+                ], 
+                "color": 5, 
+                "text": "pinnumber=3", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "3"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  48900
+                ], 
+                "color": 5, 
+                "text": "pinseq=3", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "3"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46655, 
+                  48895
+                ], 
+                "color": 9, 
+                "text": "pinlabel=clk", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "clk"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              48000, 
+              49300
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                48000, 
+                49300
+              ], 
+              [
+                47600, 
+                49300
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  47900, 
+                  49700
+                ], 
+                "color": 9, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  47695, 
+                  49345
+                ], 
+                "color": 5, 
+                "text": "pinnumber=4", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "4"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  47900, 
+                  49400
+                ], 
+                "color": 5, 
+                "text": "pinseq=4", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "4"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  47545, 
+                  49295
+                ], 
+                "color": 9, 
+                "text": "pinlabel=out", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 1, 
+            "point": [
+              46595, 
+              50000
+            ], 
+            "color": 8, 
+            "text": "refdes=REG?", 
+            "visibility": 1, 
+            "key": "refdes", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "REG?"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              46595, 
+              50200
+            ], 
+            "color": 8, 
+            "text": "device=REG", 
+            "visibility": 0, 
+            "key": "device", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "REG"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "fillwidth": -1, 
+            "pitch1": -1, 
+            "dashstyle": 0, 
+            "point": [
+              46600, 
+              48700
+            ], 
+            "color": 3, 
+            "capstyle": 0, 
+            "pitch2": -1, 
+            "wh": [
+              1000, 
+              1200
+            ], 
+            "dashspace": -1, 
+            "width": 0, 
+            "angle1": -1, 
+            "angle2": -1, 
+            "dashlength": -1, 
+            "filltype": 0, 
+            "type": "B"
+          }, 
+          "ext_attrs": {}
+        }
+      ], 
+      "pins": [
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              46200, 
+              49700
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                46200, 
+                49700
+              ], 
+              [
+                46600, 
+                49700
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  49700
+                ], 
+                "color": 9, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46505, 
+                  49745
+                ], 
+                "color": 5, 
+                "text": "pinnumber=1", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  49700
+                ], 
+                "color": 5, 
+                "text": "pinseq=1", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46655, 
+                  49695
+                ], 
+                "color": 9, 
+                "text": "pinlabel=ld", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "ld"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              46200, 
+              49300
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                46200, 
+                49300
+              ], 
+              [
+                46600, 
+                49300
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  49300
+                ], 
+                "color": 9, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46505, 
+                  49345
+                ], 
+                "color": 5, 
+                "text": "pinnumber=2", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "2"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  49300
+                ], 
+                "color": 5, 
+                "text": "pinseq=2", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "2"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46655, 
+                  49295
+                ], 
+                "color": 9, 
+                "text": "pinlabel=in", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              46200, 
+              48900
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                46200, 
+                48900
+              ], 
+              [
+                46600, 
+                48900
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  48900
+                ], 
+                "color": 9, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46505, 
+                  48945
+                ], 
+                "color": 5, 
+                "text": "pinnumber=3", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "3"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  46200, 
+                  48900
+                ], 
+                "color": 5, 
+                "text": "pinseq=3", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "3"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  46655, 
+                  48895
+                ], 
+                "color": 9, 
+                "text": "pinlabel=clk", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "clk"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              48000, 
+              49300
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                48000, 
+                49300
+              ], 
+              [
+                47600, 
+                49300
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  47900, 
+                  49700
+                ], 
+                "color": 9, 
+                "text": "pintype=out", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  47695, 
+                  49345
+                ], 
+                "color": 5, 
+                "text": "pinnumber=4", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "4"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  47900, 
+                  49400
+                ], 
+                "color": 5, 
+                "text": "pinseq=4", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "4"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  47545, 
+                  49295
+                ], 
+                "color": 9, 
+                "text": "pinlabel=out", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "out"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }
+      ], 
+      "attributes": {
+        "device": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              46595, 
+              50200
+            ], 
+            "color": 5, 
+            "text": "device=REG", 
+            "visibility": 0, 
+            "key": "device", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "REG"
+          }, 
+          "ext_attrs": {}
+        }, 
+        "refdes": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 1, 
+            "point": [
+              46595, 
+              50000
+            ], 
+            "color": 5, 
+            "text": "refdes=REG1", 
+            "visibility": 1, 
+            "key": "refdes", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "REG1"
+          }, 
+          "ext_attrs": {}
+        }
+      }, 
+      "type": "REG"
+    }, 
+    {
+      "inputs": [
+        "clk"
+      ], 
+      "point": [
+        47100, 
+        46100
+      ], 
+      "outputs": [], 
+      "component": {
+        "base_attrs": {
+          "angle": 0, 
+          "point": [
+            47100, 
+            46100
+          ], 
+          "basename": "probe.sym", 
+          "mirror": 0, 
+          "selectable": 1, 
+          "type": "C"
+        }, 
+        "ext_attrs": {
+          "device": {
+            "base_attrs": {
+              "angle": 0, 
+              "num_lines": 1, 
+              "show_name_value": 0, 
+              "point": [
+                47495, 
+                47000
+              ], 
+              "color": 5, 
+              "text": "device=PROBE", 
+              "visibility": 0, 
+              "key": "device", 
+              "size": 10, 
+              "type": "T", 
+              "alignment": 0, 
+              "attr": "PROBE"
+            }, 
+            "ext_attrs": {}
+          }, 
+          "refdes": {
+            "base_attrs": {
+              "angle": 0, 
+              "num_lines": 1, 
+              "show_name_value": 1, 
+              "point": [
+                47495, 
+                46800
+              ], 
+              "color": 5, 
+              "text": "refdes=PROBE1", 
+              "visibility": 1, 
+              "key": "refdes", 
+              "size": 10, 
+              "type": "T", 
+              "alignment": 0, 
+              "attr": "PROBE1"
+            }, 
+            "ext_attrs": {}
+          }
+        }
+      }, 
+      "symboldata": [
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 1, 
+            "point": [
+              47495, 
+              46800
+            ], 
+            "color": 8, 
+            "text": "refdes=PROBE?", 
+            "visibility": 1, 
+            "key": "refdes", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "PROBE?"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              47495, 
+              47000
+            ], 
+            "color": 8, 
+            "text": "device=PROBE", 
+            "visibility": 0, 
+            "key": "device", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "PROBE"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "fillwidth": -1, 
+            "pitch1": -1, 
+            "dashstyle": 0, 
+            "point": [
+              47798, 
+              46398
+            ], 
+            "color": 3, 
+            "capstyle": 0, 
+            "pitch2": -1, 
+            "dashspace": -1, 
+            "width": 0, 
+            "radius": 303, 
+            "angle2": -1, 
+            "angle1": -1, 
+            "dashlength": -1, 
+            "filltype": 0, 
+            "type": "V"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              47100, 
+              46400
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                47100, 
+                46400
+              ], 
+              [
+                47500, 
+                46400
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  48200, 
+                  46100
+                ], 
+                "color": 5, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  47405, 
+                  46445
+                ], 
+                "color": 5, 
+                "text": "pinnumber=1", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  48200, 
+                  46300
+                ], 
+                "color": 5, 
+                "text": "pinseq=1", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  47555, 
+                  46395
+                ], 
+                "color": 9, 
+                "text": "pinlabel=in", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }
+      ], 
+      "pins": [
+        {
+          "base_attrs": {
+            "whichend": 0, 
+            "point": [
+              47100, 
+              46400
+            ], 
+            "color": 1, 
+            "pintype": 0, 
+            "type": "P", 
+            "line": [
+              [
+                47100, 
+                46400
+              ], 
+              [
+                47500, 
+                46400
+              ]
+            ]
+          }, 
+          "ext_attrs": {
+            "pintype": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  48200, 
+                  46100
+                ], 
+                "color": 5, 
+                "text": "pintype=in", 
+                "visibility": 0, 
+                "key": "pintype", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinnumber": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  47405, 
+                  46445
+                ], 
+                "color": 5, 
+                "text": "pinnumber=1", 
+                "visibility": 1, 
+                "key": "pinnumber", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 6, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinseq": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  48200, 
+                  46300
+                ], 
+                "color": 5, 
+                "text": "pinseq=1", 
+                "visibility": 0, 
+                "key": "pinseq", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }, 
+            "pinlabel": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 1, 
+                "point": [
+                  47555, 
+                  46395
+                ], 
+                "color": 9, 
+                "text": "pinlabel=in", 
+                "visibility": 1, 
+                "key": "pinlabel", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "in"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }
+      ], 
+      "attributes": {
+        "device": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 0, 
+            "point": [
+              47495, 
+              47000
+            ], 
+            "color": 5, 
+            "text": "device=PROBE", 
+            "visibility": 0, 
+            "key": "device", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "PROBE"
+          }, 
+          "ext_attrs": {}
+        }, 
+        "refdes": {
+          "base_attrs": {
+            "angle": 0, 
+            "num_lines": 1, 
+            "show_name_value": 1, 
+            "point": [
+              47495, 
+              46800
+            ], 
+            "color": 5, 
+            "text": "refdes=PROBE1", 
+            "visibility": 1, 
+            "key": "refdes", 
+            "size": 10, 
+            "type": "T", 
+            "alignment": 0, 
+            "attr": "PROBE1"
+          }, 
+          "ext_attrs": {}
+        }
+      }, 
+      "type": "PROBE"
+    }
+  ], 
+  "signals": [
+    {
+      "nets": [
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                52300, 
+                46200
+              ], 
+              [
+                53000, 
+                46200
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }
+      ], 
+      "netname": "TOP_LEVEL_1"
+    }, 
+    {
+      "nets": [
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                52300, 
+                46600
+              ], 
+              [
+                53000, 
+                46600
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }
+      ], 
+      "netname": "TOP_LEVEL_2"
+    }, 
+    {
+      "nets": [
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                52300, 
+                47000
+              ], 
+              [
+                53000, 
+                47000
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }
+      ], 
+      "netname": "TOP_LEVEL_3"
+    }, 
+    {
+      "width": 3, 
+      "nets": [
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                52300, 
+                47400
+              ], 
+              [
+                53000, 
+                47400
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {
+            "width": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  52300, 
+                  47500
+                ], 
+                "color": 5, 
+                "text": "width=3", 
+                "visibility": 1, 
+                "key": "width", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "3"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }
+      ], 
+      "netname": "TOP_LEVEL_4"
+    }, 
+    {
+      "nets": [
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                48500, 
+                49300
+              ], 
+              [
+                48500, 
+                47000
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                48000, 
+                49300
+              ], 
+              [
+                48500, 
+                49300
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                48500, 
+                47000
+              ], 
+              [
+                49100, 
+                47000
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }
+      ], 
+      "netname": "TOP_LEVEL_5"
+    }, 
+    {
+      "nets": [
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                45300, 
+                49300
+              ], 
+              [
+                46200, 
+                49300
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                45300, 
+                49700
+              ], 
+              [
+                45300, 
+                49300
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                44400, 
+                49700
+              ], 
+              [
+                46200, 
+                49700
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {
+            "value": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  44400, 
+                  49900
+                ], 
+                "color": 5, 
+                "text": "value=1", 
+                "visibility": 1, 
+                "key": "value", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "1"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }
+      ], 
+      "value": "1", 
+      "netname": "TOP_LEVEL_6"
+    }, 
+    {
+      "nets": [
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                45700, 
+                48900
+              ], 
+              [
+                46200, 
+                48900
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                45300, 
+                47400
+              ], 
+              [
+                49100, 
+                47400
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {
+            "netname": {
+              "base_attrs": {
+                "angle": 0, 
+                "num_lines": 1, 
+                "show_name_value": 0, 
+                "point": [
+                  45700, 
+                  47600
+                ], 
+                "color": 5, 
+                "text": "netname=clk", 
+                "visibility": 1, 
+                "key": "netname", 
+                "size": 10, 
+                "type": "T", 
+                "alignment": 0, 
+                "attr": "clk"
+              }, 
+              "ext_attrs": {}
+            }
+          }
+        }, 
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                45700, 
+                47400
+              ], 
+              [
+                45700, 
+                48900
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                46600, 
+                47400
+              ], 
+              [
+                46600, 
+                46400
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }, 
+        {
+          "base_attrs": {
+            "color": 4, 
+            "line": [
+              [
+                46600, 
+                46400
+              ], 
+              [
+                47100, 
+                46400
+              ]
+            ], 
+            "type": "N"
+          }, 
+          "ext_attrs": {}
+        }
+      ], 
+      "netname": "clk"
+    }
+  ], 
+  "internal_signals": [
+    "TOP_LEVEL_1", 
+    "TOP_LEVEL_2", 
+    "TOP_LEVEL_3", 
+    "TOP_LEVEL_4", 
+    "TOP_LEVEL_5", 
+    "TOP_LEVEL_6", 
+    "clk"
+  ], 
+  "input_signals": [], 
+  "graphics": [], 
+  "attributes": {
+    "device": "TOP_LEVEL", 
+    "name": "top_level"
+  }, 
+  "in_pins": [], 
+  "out_pins": []
+}
