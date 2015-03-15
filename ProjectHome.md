@@ -1,0 +1,1 @@
+This is a school project for school of electrical engineering, University of Belgrade. We are developing a toolchain for rapid development of processor simulators and corresponding gui, using tools made here, gschem schematic editor, python and myhdl hardware description language.
